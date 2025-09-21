@@ -8,7 +8,7 @@ EasyDox is a cutting-edge web application that revolutionizes how legal document
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.0-38bdf8)](https://tailwindcss.com/)
 [![Supabase](https://img.shields.io/badge/Supabase-Database-green)](https://supabase.com/)
-[![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+<!--[![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)-->
 
 ## 🌟 Features
 
@@ -182,15 +182,28 @@ We welcome contributions from the community! Here's how you can help:
 - Ensure responsive design compatibility
 - Update documentation as needed
 
-## 📝 License
+## 👥 Team
 
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+This project is proudly developed by a dedicated team of 6 members:
 
-## 👨‍💻 Author
+### 🚀 **Core Development Team**
 
-**Saran Goutham**
-- GitHub: [@SaranGoutham](https://github.com/SaranGoutham)
-- LinkedIn: [Connect with me](https://linkedin.com/in/sarangoutham)
+| Team Member | GitHub Profile | Role |
+|-------------|----------------|------| 
+| **Siddhi Ganesh Vardhan** | [@Ganeshsgv](https://github.com/Ganeshsgv) | Team Lead & Full-Stack Developer |
+| **James Kishore Manike** | [@ToolsHD](https://github.com/ToolsHD) | Full-Stack Developer |
+| **Saran Goutham Sontiyala** | [@SaranGoutham](https://github.com/SaranGoutham) | Backend Developer |
+| **Siddhardha Akhil Prasad Sirapu** | [@siddhardha-sirapu](https://github.com/siddhardha-sirapu) | Frontend Developer |
+| **Durga Prasad Ungarala** | [@DurgaPrasadU616](https://github.com/DurgaPrasadU616) | AI/ML Engineer |
+| **Gowtham Raju Thokala** | [@Gowtham5753](https://github.com/Gowtham5753) | UI/UX Designer |
+
+
+
+### 🤝 **Team Contributions**
+- **Collaborative Development**: Each member brings unique expertise to create a comprehensive solution
+- **Code Reviews**: Peer review process ensures high code quality and knowledge sharing
+- **Agile Methodology**: Regular sprints and standups for efficient project management
+- **Shared Vision**: United goal of making legal document processing accessible to everyone
 
 ## 🙏 Acknowledgments
 
