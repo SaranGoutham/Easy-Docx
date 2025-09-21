@@ -215,7 +215,7 @@ This project is proudly developed by a dedicated team of 6 members:
 
 Having issues? We're here to help!
 
-- 📧 **Email:** support@easydox.com
+- 📧 **Email:** sarangoutham2@gmail.com
 - 🐛 **Bug Reports:** [GitHub Issues](https://github.com/SaranGoutham/EasyDox/issues)
 - 💬 **Discussions:** [GitHub Discussions](https://github.com/SaranGoutham/EasyDox/discussions)
 
@@ -228,3 +228,4 @@ Having issues? We're here to help!
 [⬆ Back to Top](#-easydox)
 
 </div>
+
