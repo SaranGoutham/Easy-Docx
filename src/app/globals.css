@@ -1,0 +1,161 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  font-family: "Geist", sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: 220 35% 98%;
+    --foreground: 222 46% 12%;
+    --card: 218 30% 99%;
+    --card-foreground: 222 46% 12%;
+    --popover: 218 30% 99%;
+    --popover-foreground: 222 46% 12%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 222 28% 94%;
+    --secondary-foreground: 222 42% 18%;
+    --muted: 220 25% 92%;
+    --muted-foreground: 220 15% 45%;
+    --accent: 0 0% 0%;
+    --accent-foreground: 100 100% 100%;
+    --destructive: 357 74% 57%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 24% 88%;
+    --input: 220 24% 88%;
+    --ring: 217 91% 60%;
+    --chart-1: 218 92% 60%;
+    --chart-2: 199 68% 48%;
+    --chart-3: 277 74% 64%;
+    --chart-4: 43 82% 64%;
+    --chart-5: 8 78% 62%;
+    --radius: 0.5rem;
+    --sidebar-background: 218 32% 95%;
+    --sidebar-foreground: 225 43% 20%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 223 30% 92%;
+    --sidebar-accent-foreground: 225 43% 20%;
+    --sidebar-border: 220 24% 88%;
+    --sidebar-ring: 217 91% 60%;
+  }
+  .dark {
+    --background: 226 52% 7%;
+    --foreground: 220 30% 96%;
+    --card: 226 45% 10%;
+    --card-foreground: 220 30% 96%;
+    --popover: 226 45% 10%;
+    --popover-foreground: 220 30% 96%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 224 45% 12%;
+    --secondary: 225 32% 16%;
+    --secondary-foreground: 220 30% 92%;
+    --muted: 227 28% 18%;
+    --muted-foreground: 220 15% 68%;
+    --accent: 277 82% 70%;
+    --accent-foreground: 224 45% 12%;
+    --destructive: 357 68% 46%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 226 28% 22%;
+    --input: 226 28% 22%;
+    --ring: 217 91% 60%;
+    --chart-1: 217 92% 60%;
+    --chart-2: 199 74% 54%;
+    --chart-3: 277 82% 70%;
+    --chart-4: 43 86% 68%;
+    --chart-5: 8 80% 60%;
+    --sidebar-background: 226 48% 8%;
+    --sidebar-foreground: 220 30% 92%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 224 45% 12%;
+    --sidebar-accent: 226 36% 14%;
+    --sidebar-accent-foreground: 220 30% 92%;
+    --sidebar-border: 226 32% 18%;
+    --sidebar-ring: 217 91% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@keyframes progress-indeterminate {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(-10%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes circular-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Circular loading bar styles */
+.circular-loading {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left: 4px solid hsl(var(--primary));
+  border-radius: 50%;
+  animation: circular-loading 1s linear infinite;
+}
+
+.circular-loading-sm {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-left: 2px solid hsl(var(--primary));
+  border-radius: 50%;
+  animation: circular-loading 1s linear infinite;
+}
+
+.circular-loading-lg {
+  width: 60px;
+  height: 60px;
+  border: 6px solid rgba(0, 0, 0, 0.1);
+  border-left: 6px solid hsl(var(--primary));
+  border-radius: 50%;
+  animation: circular-loading 1s linear infinite;
+}
+
+/* Dark mode support for circular loading */
+.dark .circular-loading,
+.dark .circular-loading-sm,
+.dark .circular-loading-lg {
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-left: 4px solid hsl(var(--primary));
+}
+
+.dark .circular-loading-sm {
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-left: 2px solid hsl(var(--primary));
+}
+
+.dark .circular-loading-lg {
+  border: 6px solid rgba(255, 255, 255, 0.1);
+  border-left: 6px solid hsl(var(--primary));
+}
