@@ -190,7 +190,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       typeof window !== "undefined" ? window.location.origin : "";
 
     // Priority: explicit env > Vercel-provided host > browser origin > fallback
-    const pick = envUrl || vercelUrl || browserOrigin || "https://easy-docx.vercel.app";
+    const pick = "https://easy-docx.vercel.app";
     return pick.replace(/\/$/, "");
   };
 
