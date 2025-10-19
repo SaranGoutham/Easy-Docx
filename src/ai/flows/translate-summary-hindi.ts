@@ -10,6 +10,7 @@
  */
 
 import {ai} from '@/ai/genkit';
+import { googleAI } from '@genkit-ai/googleai';
 import {z} from 'genkit';
 
 const TranslateSummaryToHindiInputSchema = z.object({
@@ -36,6 +37,7 @@ const translateSummaryToHindiPrompt = ai.definePrompt({
   name: 'translateSummaryToHindiPrompt',
   input: {schema: TranslateSummaryToHindiInputSchema},
   output: {schema: TranslateSummaryToHindiOutputSchema},
+  model: googleAI.model('gemini-2.5-flash'),
   prompt: `Translate the following summary of a legal document into Hindi.
 
 Your translation MUST:

@@ -1,6 +1,13 @@
 import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      // Avoid bundling native canvas and pdf parser into server actions.
+      config.externals.push('canvas', 'pdf-parse');
+    }
+    return config;
+  },
   /* config options here */
   typescript: {
     ignoreBuildErrors: true,

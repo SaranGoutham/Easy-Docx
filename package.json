@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack -p 9002",
+    "dev": "next dev -p 9002",
     "genkit:dev": "genkit start -- tsx src/ai/dev.ts",
     "genkit:watch": "genkit start -- tsx --watch src/ai/",
     "build": "next build",
@@ -39,6 +39,8 @@
     "@supabase/auth-helpers-nextjs": "^0.10.0",
     "@supabase/ssr": "^0.7.0",
     "@supabase/supabase-js": "^2.48.0",
+    "@types/pdf-parse": "^1.1.5",
+    "canvas": "^3.2.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
@@ -50,6 +52,8 @@
     "mammoth": "^1.11.0",
     "next": "15.3.3",
     "patch-package": "^8.0.0",
+    "pdf-parse": "^2.4.3",
+    "pdfjs-dist": "^5.4.296",
     "react": "^18.3.1",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18.3.1",
@@ -59,6 +63,7 @@
     "swr": "^2.3.6",
     "tailwind-merge": "^3.0.1",
     "tailwindcss-animate": "^1.0.7",
+    "tesseract.js": "^6.0.1",
     "turbo": "^2.5.6",
     "zod": "^3.24.2"
   },
@@ -71,6 +76,6 @@
     "genkit-cli": "^1.14.1",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5.9.3"
   }
 }

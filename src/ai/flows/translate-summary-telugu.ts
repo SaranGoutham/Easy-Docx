@@ -9,6 +9,7 @@
  */
 
 import {ai} from '@/ai/genkit';
+import { googleAI } from '@genkit-ai/googleai';
 import {z} from 'genkit';
 
 const TranslateSummaryToTeluguInputSchema = z.object({
@@ -35,6 +36,7 @@ const prompt = ai.definePrompt({
   name: 'translateSummaryToTeluguPrompt',
   input: {schema: TranslateSummaryToTeluguInputSchema},
   output: {schema: TranslateSummaryToTeluguOutputSchema},
+  model: googleAI.model('gemini-2.5-flash'),
   prompt: `Translate the following summary of a legal document into Telugu.
 
 Your translation MUST:
