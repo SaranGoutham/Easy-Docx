@@ -193,15 +193,13 @@ This project is proudly developed by a dedicated team of 6 members:
 
 ### 🚀 **Core Development Team**
 
-
-| Team Member                    | GitHub Profile                                | Role                                 |
-|--------------------------------|------------------------------------------------|--------------------------------------|
-| Siddhi Ganesh Vardhan          | [@Ganeshsgv](https://github.com/Ganeshsgv)     | Team Lead & Full-Stack Developer     |
-| James Kishore Manike           | [@ToolsHD](https://github.com/ToolsHD)         | Full-Stack Developer                 |
-| Saran Goutham Sontiyala        | [@SaranGoutham](https://github.com/SaranGoutham) | Backend Developer                    |
-| Siddhardha Akhil Prasad Sirapu | [@siddhardha-sirapu](https://github.com/siddhardha-sirapu) | QA Automation Tester (Selenium)      |
-| Durga Prasad Ungarala          | [@DurgaPrasadU616](https://github.com/DurgaPrasadU616) | AI/ML Engineer                       |
-| Gowtham Raju Thokala           | [@Gowtham5753](https://github.com/Gowtham5753) | Frontend Developer                   |
+| Team Member | GitHub Profile | Role |
+|-------------|----------------|------| 
+| **Saran Goutham Sontiyala** | [@SaranGoutham](https://github.com/SaranGoutham) | Team Lead & Full-Stack Developer |
+| **Durga Prasad Ungarala** | [@DurgaPrasadU616](https://github.com/DurgaPrasadU616) | AI/ML Engineer |
+| **Gowtham Raju Thokala** | [@Gowtham5753](https://github.com/Gowtham5753) | Backend Developer |
+| **Ashok Mani Degala** | [@Ashokmanidegala](https://github.com/Ashokmanidegala) | UI/UX Designer |
+| **Gayathri Gumma** | [@GayathriGumma](https://github.com/GayathriGumma) | Frontend Developer |
 
 
 
