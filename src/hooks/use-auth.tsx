@@ -37,9 +37,9 @@ const AuthContext = createContext<AuthContextType>({
   pendingEmail: null,
   resendVerificationEmail: async () => ({}),
   refreshSession: async () => false,
-  clearError: () => {},
-  resetVerification: () => {},
-  signOut: async () => {},
+  clearError: () => { },
+  resetVerification: () => { },
+  signOut: async () => { },
 });
 
 const supabaseErrorMessage = (err: AuthError | Error): string => {
@@ -184,9 +184,20 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const signUpWithEmail = async (email: string, pass: string) => {
     setLoading(true);
     setError(null);
+    const getRedirectUrl = () => {
+      const base =
+        (typeof window !== 'undefined' && window.location.origin) ||
+        process.env.NEXT_PUBLIC_SITE_URL ||
+        'https://easy-docx.vercel.app';
+      return `${base}/auth/callback`;
+    };
+
     const { data, error: authError } = await supabase.auth.signUp({
       email,
       password: pass,
+      options: {
+        emailRedirectTo: getRedirectUrl(),
+      },
     });
 
     if (authError) {
@@ -213,9 +224,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       return { error: "No email available to verify." };
     }
     setLoading(true);
+    const base =
+      (typeof window !== 'undefined' && window.location.origin) ||
+      process.env.NEXT_PUBLIC_SITE_URL ||
+      'https://easy-docx.vercel.app';
+    const emailRedirectTo = `${base}/auth/callback`;
+
     const { error: resendError } = await supabase.auth.resend({
       type: "signup",
       email: pendingEmail,
+
+      options: { emailRedirectTo },
     });
     if (resendError) {
       return { error: handleAuthError(resendError) };
