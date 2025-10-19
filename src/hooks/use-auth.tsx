@@ -181,16 +181,23 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return {};
   };
 
+  // Resolve the canonical site base URL for redirect links sent to Supabase.
+  const resolveSiteBase = () => {
+    const envUrl = (process.env.NEXT_PUBLIC_SITE_URL || "").trim();
+    const vercelHost = (process.env.NEXT_PUBLIC_VERCEL_URL || "").trim();
+    const vercelUrl = vercelHost ? `https://${vercelHost}` : "";
+    const browserOrigin =
+      typeof window !== "undefined" ? window.location.origin : "";
+
+    // Priority: explicit env > Vercel-provided host > browser origin > fallback
+    const pick = envUrl || vercelUrl || browserOrigin || "https://easy-docx.vercel.app";
+    return pick.replace(/\/$/, "");
+  };
+
   const signUpWithEmail = async (email: string, pass: string) => {
     setLoading(true);
     setError(null);
-    const getRedirectUrl = () => {
-      const base =
-        (typeof window !== 'undefined' && window.location.origin) ||
-        process.env.NEXT_PUBLIC_SITE_URL ||
-        'https://easy-docx.vercel.app';
-      return `${base}/auth/callback`;
-    };
+    const getRedirectUrl = () => `${resolveSiteBase()}/auth/callback`;
 
     const { data, error: authError } = await supabase.auth.signUp({
       email,
@@ -224,11 +231,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       return { error: "No email available to verify." };
     }
     setLoading(true);
-    const base =
-      (typeof window !== 'undefined' && window.location.origin) ||
-      process.env.NEXT_PUBLIC_SITE_URL ||
-      'https://easy-docx.vercel.app';
-    const emailRedirectTo = `${base}/auth/callback`;
+    const emailRedirectTo = `${resolveSiteBase()}/auth/callback`;
 
     const { error: resendError } = await supabase.auth.resend({
       type: "signup",
