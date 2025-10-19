@@ -193,7 +193,7 @@ This project is proudly developed by a dedicated team of 6 members:
 
 ### 🚀 **Core Development Team**
 
-<!-- | Team Member | GitHub Profile | Role |
+| Team Member | GitHub Profile | Role |
 |-------------|----------------|------| 
 | **Saran Goutham Sontiyala** | [@SaranGoutham](https://github.com/SaranGoutham) | Team Lead & Full-Stack Developer |
 | **Durga Prasad Ungarala** | [@DurgaPrasadU616](https://github.com/DurgaPrasadU616) | AI/ML Engineer |
