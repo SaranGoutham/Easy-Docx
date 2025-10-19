@@ -198,6 +198,8 @@ This project is proudly developed by a dedicated team of 6 members:
 | **Saran Goutham Sontiyala** | [@SaranGoutham](https://github.com/SaranGoutham) | Team Lead & Full-Stack Developer |
 | **Durga Prasad Ungarala** | [@DurgaPrasadU616](https://github.com/DurgaPrasadU616) | AI/ML Engineer |
 | **Gowtham Raju Thokala** | [@Gowtham5753](https://github.com/Gowtham5753) | Frontend Developer |
+| **Ashok Mani Degala** | [@Ashokmanidegala](https://github.com/Ashokmanidegala) | UI/UX Designer|
+| **Gayathri Gumma** | [@GayathriGumma](https://github.com/GayathriGumma) | Frontend Developer |
 
 
 
