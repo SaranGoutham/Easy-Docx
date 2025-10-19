@@ -193,14 +193,45 @@ This project is proudly developed by a dedicated team of 6 members:
 
 ### 🚀 **Core Development Team**
 
-| Team Member | GitHub Profile | Role |
+<!-- | Team Member | GitHub Profile | Role |
 |-------------|----------------|------| 
 | **Saran Goutham Sontiyala** | [@SaranGoutham](https://github.com/SaranGoutham) | Team Lead & Full-Stack Developer |
 | **Durga Prasad Ungarala** | [@DurgaPrasadU616](https://github.com/DurgaPrasadU616) | AI/ML Engineer |
-| **Gowtham Raju Thokala** | [@Gowtham5753](https://github.com/Gowtham5753) | Backend Developer |
-| **Ashok Mani Degala** | [@Ashokmanidegala](https://github.com/Ashokmanidegala) | UI/UX Designer |
-| **Gayathri Gumma** | [@](https://github.com/) | Frontend Developer |
+| **Gowtham Raju Thokala** | [@Gowtham5753](https://github.com/Gowtham5753) | Frontend Developer |
 
 
-[⬆️ Back to Top](#easydox)
+
+### 🤝 **Team Contributions**
+- **Collaborative Development**: Each member brings unique expertise to create a comprehensive solution
+- **Code Reviews**: Peer review process ensures high code quality and knowledge sharing
+- **Agile Methodology**: Regular sprints and standups for efficient project management
+- **Shared Vision**: United goal of making legal document processing accessible to everyone
+
+## 🙏 Acknowledgments
+
+- Thanks to the Next.js team for the amazing framework
+- Supabase for providing excellent backend services
+- The open-source community for continuous inspiration
+
+## 📞 Support
+
+Having issues? We're here to help!
+
+- 📧 **Email:** sarangoutham2@gmail.com
+- 🐛 **Bug Reports:** [GitHub Issues](https://github.com/SaranGoutham/EasyDox/issues)
+- 💬 **Discussions:** [GitHub Discussions](https://github.com/SaranGoutham/EasyDox/discussions)
+
+---
+
+<div align="center">
+
+**Built with ❤️ using Next.js and TypeScript**
+
+[⬆ Back to Top](#-easydox)
+
+</div>
+
+
+
+
 
