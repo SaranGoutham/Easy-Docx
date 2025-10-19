@@ -9,6 +9,7 @@
  */
 
 import {ai} from '@/ai/genkit';
+import { googleAI } from '@genkit-ai/googleai';
 import {z} from 'genkit';
 
 const DetectLanguageInputSchema = z.object({
@@ -29,6 +30,7 @@ const prompt = ai.definePrompt({
   name: 'detectLanguagePrompt',
   input: {schema: DetectLanguageInputSchema},
   output: {schema: DetectLanguageOutputSchema},
+  model: googleAI.model('gemini-2.5-flash'),
   prompt: `Detect the language of the following text. The possible languages are English, Hindi, and Telugu. If you cannot determine the language, respond with "Unknown".
 
 Text: {{{text}}}`,

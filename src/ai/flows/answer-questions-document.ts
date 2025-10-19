@@ -12,6 +12,7 @@
  */
 
 import {ai} from '@/ai/genkit';
+import { googleAI } from '@genkit-ai/googleai';
 import {z} from 'genkit';
 
 const AnswerQuestionsAboutDocumentInputSchema = z.object({
@@ -47,24 +48,46 @@ const prompt = ai.definePrompt({
   output: {
     schema: AnswerQuestionsAboutDocumentOutputSchema,
   },
-  prompt: `You are a legal expert. The user is asking a question in {{targetLanguage}}. Your answer MUST be entirely in {{targetLanguage}}.
+  model: googleAI.model('gemini-2.5-flash'),
+  prompt: `You are a legal expert. The user is asking a question in {{targetLanguage}}. 
+  Your response must be written entirely in {{targetLanguage}}.
 
-Based on the provided legal document, answer the user's question.
+  You will receive a legal document and a user question. 
+  Your task is to provide an answer based strictly on the content of the provided document.
 
-Your answer MUST BE:
-- Clear, direct, and easy to understand for a non-expert.
-- Use bullet points or numbered lists for detailed explanations.
-- Use bold text to highlight key terms or figures.
-- Preserve any markdown formatting from the document.
+  ### Response Requirements:
+  1. Clarity and Simplicity
+     - Write in a clear, direct, and easy-to-understand manner.
+     - Avoid complex legal jargon unless it is necessary, and define it if used.
 
-Legal Document:
-{{documentText}}
+  2. Structure and Formatting
+     - Organize your answer using bullet points or numbered lists when presenting multiple ideas or steps.
+     - Use **bold** text to highlight:
+       - Key legal terms (e.g., “contract,” “liability,” “jurisdiction”)
+       - Important figures, deadlines, or conditions.
+     - Preserve all markdown formatting that exists in the original document (headings, lists, tables, etc.).
 
-Question: {{question}}
+  3. Contextual Awareness
+     - Only refer to information that appears in the provided legal document.
+     - If a previous answer exists, review and improve it by adding clarity, corrections, or additional relevant details. Do not simply repeat it.
 
-Previous Answer (if any): {{previousAnswer}}
+  4. Language
+     - The entire response must be written in {{targetLanguage}} with accurate grammar and natural phrasing.
 
-Answer in {{targetLanguage}}:`,
+  ---
+
+  Legal Document:
+  {{documentText}}
+
+  Question:
+  {{question}}
+
+  Previous Answer (if any):
+  {{previousAnswer}}
+
+  ---
+
+  Answer in {{targetLanguage}}:`,
 });
 
 const answerQuestionsAboutDocumentFlow = ai.defineFlow(

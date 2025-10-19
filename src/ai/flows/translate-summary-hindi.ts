@@ -38,14 +38,30 @@ const translateSummaryToHindiPrompt = ai.definePrompt({
   input: {schema: TranslateSummaryToHindiInputSchema},
   output: {schema: TranslateSummaryToHindiOutputSchema},
   model: googleAI.model('gemini-2.5-flash'),
-  prompt: `Translate the following summary of a legal document into Hindi.
+  prompt: `You are a professional legal translator. 
+  Translate the following summary of a legal document into Hindi.
 
-Your translation MUST:
-- Preserve the original markdown formatting EXACTLY. This includes headings, bullet points (using *), and bold text (using **).
-- Be clear, accurate, and use appropriate legal terminology in Hindi where necessary.
+  ### Translation Requirements:
+  1. Accuracy and Clarity
+     - Translate all content **faithfully and clearly** into natural, fluent Hindi.
+     - Use **appropriate legal terminology** in Hindi where relevant.
+     - Do not add or omit any information.
 
-Original Summary:
-{{{summary}}}`,
+  2. Formatting Preservation
+     - Preserve the **original markdown formatting exactly**:
+       - Headings (using #)
+       - Bullet points (using *)
+       - Bold text (using **)
+     - Do not change punctuation, numbering, or structure.
+
+  3. Tone and Readability
+     - Maintain a **formal and professional tone** suitable for legal summaries.
+     - Ensure the translation remains easy to read and understandable.
+
+  ---
+
+  Original Summary:
+  {{summary}}`,
 });
 
 const translateSummaryToHindiFlow = ai.defineFlow(

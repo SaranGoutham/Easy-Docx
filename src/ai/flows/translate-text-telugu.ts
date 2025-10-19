@@ -31,7 +31,30 @@ const prompt = ai.definePrompt({
   input: {schema: TranslateTextToTeluguInputSchema},
   output: {schema: TranslateTextToTeluguOutputSchema},
   model: googleAI.model('gemini-2.5-flash'),
-  prompt: `Translate the following text to Telugu: {{{text}}}`,
+  prompt: `You are a professional legal translator. 
+  Translate the following summary of a legal document into Telugu.
+
+  ### Translation Requirements:
+  1. Accuracy and Clarity
+     - Translate all content faithfully and clearly into natural, fluent Telugu.
+     - Use appropriate legal terminology in Telugu where necessary.
+     - Do not add, omit, or interpret information.
+
+  2. Formatting Preservation
+     - Preserve the original markdown formatting exactly:
+       - Headings (using #)
+       - Bullet points (using *)
+       - Bold text (using **)
+     - Do not alter punctuation, numbering, or structure.
+
+  3. Tone and Readability
+     - Maintain a formal, professional tone suitable for legal summaries.
+     - Ensure the translation remains easy to read and understandable for Telugu readers.
+
+  ---
+
+  Original Summary:
+  {{text}}`,
 });
 
 const translateTextToTeluguFlow = ai.defineFlow(
