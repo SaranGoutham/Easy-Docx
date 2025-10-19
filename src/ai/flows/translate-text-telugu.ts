@@ -9,6 +9,7 @@
  */
 
 import {ai} from '@/ai/genkit';
+import { googleAI } from '@genkit-ai/googleai';
 import {z} from 'genkit';
 
 const TranslateTextToTeluguInputSchema = z.object({
@@ -29,6 +30,7 @@ const prompt = ai.definePrompt({
   name: 'translateTextToTeluguPrompt',
   input: {schema: TranslateTextToTeluguInputSchema},
   output: {schema: TranslateTextToTeluguOutputSchema},
+  model: googleAI.model('gemini-2.5-flash'),
   prompt: `Translate the following text to Telugu: {{{text}}}`,
 });
 

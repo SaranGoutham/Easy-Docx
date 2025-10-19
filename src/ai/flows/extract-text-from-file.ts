@@ -9,10 +9,11 @@
  */
 
 import { ai } from '@/ai/genkit';
-import { googleAI } from '@genkit-ai/googleai';
 import { z } from 'genkit';
 import mammoth from 'mammoth';
 import JSZip from 'jszip';
+import { createWorker } from 'tesseract.js';
+// Delay loading heavy PDF tooling until needed on the server.
 
 const ExtractTextFromFileInputSchema = z.object({
   fileDataUri: z
@@ -34,6 +35,7 @@ export async function extractTextFromFile(input: ExtractTextFromFileInput): Prom
 
 const DOCX_MIME = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
 const PPTX_MIME = 'application/vnd.openxmlformats-officedocument.presentationml.presentation';
+const PDF_MIME = 'application/pdf';
 
 async function extractTextFromDocx(buffer: Buffer) {
   const result = await mammoth.extractRawText({ buffer });
@@ -65,6 +67,25 @@ async function extractTextFromPptx(buffer: Buffer) {
   return slideTexts.join('\n\n');
 }
 
+async function extractTextFromImage(buffer: Buffer): Promise<string> {
+  const worker = await createWorker();
+  const { data: { text } } = await worker.recognize(buffer);
+  await worker.terminate();
+  return text;
+}
+
+async function extractTextFromPdf(buffer: Buffer): Promise<string> {
+  const { PDFParse } = await import('pdf-parse');
+  const parser = new PDFParse({ data: new Uint8Array(buffer) });
+  try {
+    const result = await parser.getText();
+    return result.text;
+  } finally {
+    await parser.destroy();
+  }
+}
+
+
 function decodeDataUri(dataUri: string) {
   const match = dataUri.match(/^data:(.*?);base64,(.+)$/);
   if (!match) {
@@ -86,49 +107,24 @@ const extractTextFromFileFlow = ai.defineFlow(
   },
   async input => {
     const { mimeType, buffer } = decodeDataUri(input.fileDataUri);
+    let extractedText = '';
 
     if (mimeType === DOCX_MIME) {
-      const text = await extractTextFromDocx(buffer);
-      if (text) {
-        return { extractedText: text };
-      }
+      extractedText = await extractTextFromDocx(buffer);
+    } else if (mimeType === PPTX_MIME) {
+      extractedText = await extractTextFromPptx(buffer);
+    } else if (mimeType === PDF_MIME) {
+      extractedText = await extractTextFromPdf(buffer);
+    } else if (mimeType.startsWith('image/')) {
+      extractedText = await extractTextFromImage(buffer);
+    } else {
+      throw new Error(`Unsupported file type: ${mimeType}`);
     }
 
-    if (mimeType === PPTX_MIME) {
-      const text = await extractTextFromPptx(buffer);
-      if (text) {
-        return { extractedText: text };
-      }
+    if (extractedText) {
+      return { extractedText };
     }
 
-    const { text } = await ai.generate({
-      model: googleAI.model('gemini-1.5-flash-latest'),
-      prompt: [
-        {
-          text: 'You are an expert at extracting text from documents. Please extract all the text from the following file.',
-        },
-        { media: { url: input.fileDataUri } },
-      ],
-      config: {
-        safetySettings: [
-          {
-            category: 'HARM_CATEGORY_DANGEROUS_CONTENT',
-            threshold: 'BLOCK_NONE',
-          },
-          {
-            category: 'HARM_CATEGORY_HARASSMENT',
-            threshold: 'BLOCK_NONE',
-          },
-        ],
-      },
-    });
-
-    if (!text) {
-      throw new Error('Failed to extract text from file.');
-    }
-
-    return {
-      extractedText: text,
-    };
+    throw new Error('Failed to extract text from the file.');
   }
 );

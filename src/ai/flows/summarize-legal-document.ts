@@ -9,6 +9,7 @@
  */
 
 import {ai} from '@/ai/genkit';
+import { googleAI } from '@genkit-ai/googleai';
 import {z} from 'genkit';
 
 const SummarizeLegalDocumentInputSchema = z.object({
@@ -35,6 +36,7 @@ const prompt = ai.definePrompt({
   name: 'summarizeLegalDocumentPrompt',
   input: {schema: SummarizeLegalDocumentInputSchema},
   output: {schema: SummarizeLegalDocumentOutputSchema},
+  model: googleAI.model('gemini-2.5-flash'),
   prompt: `You are a legal expert skilled at simplifying complex documents. Summarize the following legal document for a non-expert.
 
 Your summary MUST:
