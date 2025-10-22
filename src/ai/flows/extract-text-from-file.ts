@@ -10,9 +10,7 @@
 
 import { ai } from '@/ai/genkit';
 import { z } from 'genkit';
-import mammoth from 'mammoth';
-import JSZip from 'jszip';
-import { createWorker } from 'tesseract.js';
+import { ocrImage } from '@/ai/lib/tesseract-worker';
 // Delay loading heavy PDF tooling until needed on the server.
 
 const ExtractTextFromFileInputSchema = z.object({
@@ -38,11 +36,13 @@ const PPTX_MIME = 'application/vnd.openxmlformats-officedocument.presentationml.
 const PDF_MIME = 'application/pdf';
 
 async function extractTextFromDocx(buffer: Buffer) {
+  const mammoth = (await import('mammoth')).default;
   const result = await mammoth.extractRawText({ buffer });
   return result.value?.trim() ?? '';
 }
 
 async function extractTextFromPptx(buffer: Buffer) {
+  const JSZip = (await import('jszip')).default;
   const zip = await JSZip.loadAsync(buffer);
   const slideFiles = Object.keys(zip.files)
     .filter((name) => name.startsWith('ppt/slides/slide') && name.endsWith('.xml'))
@@ -68,21 +68,15 @@ async function extractTextFromPptx(buffer: Buffer) {
 }
 
 async function extractTextFromImage(buffer: Buffer): Promise<string> {
-  const worker = await createWorker();
-  const { data: { text } } = await worker.recognize(buffer);
-  await worker.terminate();
-  return text;
+  return ocrImage(buffer);
 }
 
 async function extractTextFromPdf(buffer: Buffer): Promise<string> {
-  const { PDFParse } = await import('pdf-parse');
-  const parser = new PDFParse({ data: new Uint8Array(buffer) });
-  try {
-    const result = await parser.getText();
-    return result.text;
-  } finally {
-    await parser.destroy();
-  }
+  const mod: any = await import('pdf-parse');
+  const pdfParse: (buf: Buffer | Uint8Array) => Promise<{ text: string }>
+    = (mod?.default ?? mod) as any;
+  const { text } = await pdfParse(buffer);
+  return text;
 }
 
 
